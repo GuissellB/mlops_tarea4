@@ -7,7 +7,6 @@ on:
   pull_request:
     branches:
       - main
-
 jobs:
   retraining_model:
     runs-on: ubuntu-latest
@@ -52,7 +51,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build docker image
+      - name: Bukkkild docker image
         run: docker build -t guissb/mlops_tarea4:main .
 
       - name: Docker push to Dockerhub
@@ -73,6 +72,5 @@ jobs:
               docker stop mlops_tarea4
               docker rm mlops_tarea4
             fi
-            
             docker pull guissb/mlops_tarea4:main
             docker run -d --name mlops_tarea4 -p 8000:8000 guissb/mlops_tarea4:main
